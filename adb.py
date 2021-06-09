@@ -26,8 +26,8 @@ def get_user(userid, userpw):
         db.close()
         return ret
 
-ret = get_user('aaa', '1234')
-if ret != None:
-    print(ret)
-else:
-    print("아이디 패스워드 확인")
+# ret = get_user('aaa', '1234')
+# if ret != None:
+#     print(ret)
+# else:
+#     print("아이디 패스워드 확인")
