@@ -12,9 +12,28 @@ app.secret_key = b'aaa!111/'
 def hello():
     return render_template('main.html')
 
-@app.route('/baseball')
-def baseball():
-    return render_template('baseball.html')
+@app.route('/military')
+def military():
+    return render_template('military.html')
+
+@app.route('/tt')
+def tt():
+    return render_template('tt.html')
+
+@app.route('/tf')
+def tf():
+    return render_template('tf.html')
+
+@app.route('/game')
+def game():
+    return render_template('game.html')
+
+@app.route('/to')
+def to():
+    return render_template('to.html')
+@app.route('/traver')
+def traver():
+    return render_template('traver.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -26,7 +45,9 @@ def signup():
         pwd = request.form['pwd']
         # 회원정보를 데이터베이스에 넣기
         adb.insert_user(userid, name, pwd)
-        return '<b>{}, {}, {}</b> 님 회원가입 되었습니다.'.format(name, userid, pwd)
+        return render_template('register.html')
+     
+        
 
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
@@ -40,7 +61,7 @@ def signin():
         if ret != None:
             print(ret[1])
             session['name'] = ret[1]  # 세션에 정보 넣기
-            return redirect('/')
+            return redirect('/to')
         else:
             return redirect('/signin')
         # return idpw_ck(userid, pwd)
@@ -48,17 +69,8 @@ def signin():
 @app.route('/logout')
 def logout():
     session.pop('name', None)
-    return redirect('/')
+    return redirect('/main.html')
 
-
-@app.route('/search')
-def search():
-    # 만약에 로그인 상태이면 검색 페이지 나오고
-    if 'name' in session:
-        return render_template('search.html')
-    # 아니면 로그인 페이지로 이동
-    else:
-        return redirect("/signin")
 
 @app.route('/action', methods=['GET', 'POST'])
 def action():
@@ -69,18 +81,7 @@ def action():
         return '<b>{}</b> 로 검색한 결과입니다. 리스트 쫙~~(POST)'.format(name)
 
 # 축구페이지
-@app.route('/football')
-def football():
-    return '''
-    <html>
-    <body>
 
-    <h2>여기는 축구페이지</h2>
-    <img src="https://post-phinf.pstatic.net/MjAxOTA0MTBfMSAg/MDAxNTU0OTA0MTU0OTUy.wbiyoTJa-UaWgue-EcZYcwWPDxjcAUO8UEjd-ZT3rsAg.Vmg-tfnQz59yfac-MIA3AdmQQupDTpCUYkMLHA-RVbYg.JPEG/%EC%86%90%ED%9D%A5%EB%AF%BC.jpg" alt="축구">
-
-    </body>
-    </html>
-    '''
 # 배구페이지
 # 농구페이지
 
