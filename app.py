@@ -35,6 +35,7 @@ def to():
 def traver():
     return render_template('traver.html')
 
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == "GET":

@@ -24,6 +24,7 @@ def get_user(userid, userpw):
         print('db error:', e)
     finally:
         db.close()
+        
         return ret
 
 # ret = get_user('aaa', '1234')
